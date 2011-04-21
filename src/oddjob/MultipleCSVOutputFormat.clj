@@ -7,12 +7,11 @@
 
 (defn- first-key
   "Utility function to grab the first element in a CSV row, even if that element
-  has a delimiter in a quoted string."
+  has a comma in a quoted string."
   [row]
-  (let [[akey & xs] (.split row ",")]
-    (if (= (first row) \")
-      (apply str akey (take-while #(not= (last %) \") xs))
-      akey)))
+  (if (= \" (first row))
+    (str (first (.split row "\"," 2)) \") 
+    (first (.split row "," 2))))
 
 (defn -generateFileNameForKeyValue
   "Generate the file output file name based on the given key and the leaf file
@@ -21,8 +20,8 @@
   This function parses the CSV, joins the partial-path with the leaf file
   (typically part-0000x).  Developer is responsible for ensuring the resulting
   path still passes FSNamesystem.isValidName."
-  [this akey value part]
-  (str (Path. (-> akey str first-key json/read-json str) part)))
+  [this akey value leaf]
+  (str (Path. (-> akey str first-key json/read-json str) leaf)))
 
 (defn -generateActualKey
   "Generate the actual key from the given key/value. akey is a CSV row, the
@@ -32,9 +31,5 @@
   [this akey value]
   (let [key-string (str akey)
         partial-path (first-key key-string)]
-    ; set key minus filename + comma
+    ; remove filename + comma
     (doto akey (.set (.substring key-string (inc (count partial-path)))))))
-
-(defn -main
-  [& args]
-  (org.apache.hadoop.streaming.HadoopStreaming/main (into-array String args)))

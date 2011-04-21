@@ -5,5 +5,5 @@
                            [org.apache.hadoop/hadoop-streaming "0.18.3"]]
             :dev-dependencies [[org.apache.hadoop/hadoop-core-with-dependencies "0.18.3"]
                                [swank-clojure "1.2.1"]]
-            :main oddjob.MultipleJSONOutputFormat
+            :main oddjob.core
             :aot :all)

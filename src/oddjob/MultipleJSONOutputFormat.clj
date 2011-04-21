@@ -11,8 +11,8 @@
   This function parses the JSON, joins the partial-path with the leaf file
   (typically part-0000x).  Developer is responsible for ensuring the resulting
   path still passes FSNamesystem.isValidName."
-  [this akey value part]
-  (str (Path. (-> akey str json/read-json first str) part)))
+  [this akey value leaf]
+  (str (Path. (-> akey str json/read-json first str) leaf)))
 
 (defn -generateActualKey
   "Generate the actual key from the given key/value. akey is a JSON string of
@@ -21,7 +21,3 @@
   This function parses the JSON then sets and returns the actual key."
   [this akey value]
   (doto akey (.set (-> akey str json/read-json second json/json-str))))
-
-(defn -main
-  [& args]
-  (org.apache.hadoop.streaming.HadoopStreaming/main (into-array String args)))

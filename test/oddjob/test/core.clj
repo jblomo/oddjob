@@ -2,5 +2,5 @@
   (:use [oddjob.core])
   (:use [clojure.test]))
 
-(deftest replace-me ;; FIXME: write
-  (is false "No tests have been written."))
+(deftest main-implemented
+  (is (fn? -main) "oddjob.core does not implement -main"))
