@@ -36,6 +36,17 @@ eg rows:
 in [outputdir]/17/part-00000 will be written "realkey"	{"some values": "other JSON"}
 in [outputdir]/22/part-00000 will be written "other realkey"	{"other values": "more JSON"}
 
+### oddjob.MultipleKeyOutputFormat - Writes to the files specified by the key, and only writes the value
+The key of your job output will be used as the file path.  Only the value will
+be written to the resulting files.
+
+eg rows:
+filename1	{"some values": "other JSON"}
+otherfile	{"other values": "more JSON"}
+
+in [outputdir]/filename1/part-00000 will be written {"some values": "other JSON"}
+in [outputdir]/otherfile/part-00000 will be written {"other values": "more JSON"}
+
 ## Usage
 
 python your_mrjob.py --jar oddjob-*-standalone.jar --outputformat oddjob.MultipleJSONOutputFormat [other options]
