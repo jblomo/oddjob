@@ -14,7 +14,7 @@ https://github.com/klbostee/feathers
 ### oddjob.MultipleCSVOutputFormat - Writes to the files specified by the first element in a row.
 The output key of your job must be a comma seperated row, fields optionally
 enclosed by double quotes.  The first element will be used as the subdirectory,
-and the written row will not enclude that first element.
+and the written row will not include that first element.
 
 eg rows:
 "even",16,4
@@ -49,6 +49,7 @@ in [outputdir]/otherfile/part-00000 will be written {"other values": "more JSON"
 
 ## Usage
 
+../lein uberjar
 python your_mrjob.py --jar oddjob-*-standalone.jar --outputformat oddjob.MultipleJSONOutputFormat [other options]
 
 ## License
