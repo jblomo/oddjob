@@ -47,10 +47,15 @@ otherfile	{"other values": "more JSON"}
 in [outputdir]/filename1/part-00000 will be written {"some values": "other JSON"}
 in [outputdir]/otherfile/part-00000 will be written {"other values": "more JSON"}
 
+## Hadoop Versions
+This version is compatible with Hadoop 0.20.  The git tag 'hadoop-0.18' contains
+a version of oddjob compatible with Hadoop 0.18.  The Usage sections differ
+between versions, so please read both if you are switching between versions.
+
 ## Usage
 
 ../lein uberjar
-python your_mrjob.py --jar oddjob-*-standalone.jar --outputformat oddjob.MultipleJSONOutputFormat [other options]
+python your_mrjob.py --hadoop-arg -libjars --hadoop-arg oddjob-*-standalone.jar --outputformat oddjob.MultipleJSONOutputFormat [other options]
 
 ## License
 
