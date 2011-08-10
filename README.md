@@ -6,8 +6,8 @@ and use provided classes to change things like the input and output formats.
 
 See also:
 
-https://github.com/Yelp/mrjob
-https://github.com/klbostee/feathers
+https://github.com/Yelp/mrjob  
+https://github.com/klbostee/feathers  
 
 ## Classes
 
@@ -16,12 +16,12 @@ The output key of your job must be a comma seperated row, fields optionally
 enclosed by double quotes.  The first element will be used as the subdirectory,
 and the written row will not include that first element.
 
-eg rows:
-"even",16,4
-"odd",25,5
+eg rows:  
+"even",16,4  
+"odd",25,5  
 
-in [outputdir]/even/part-00000 will be written 16,4
-in [outputdir]/odd/part-00000 will be written 25,5
+in [outputdir]/even/part-00000 will be written 16,4  
+in [outputdir]/odd/part-00000 will be written 25,5  
 
 
 ### oddjob.MultipleJSONOutputFormat - Writes to the files specified by the first element in the key.
@@ -29,23 +29,23 @@ The output key of your job must be a JSON formatted array.  The first element
 will be used as the subdirectory, and the second element will be used for key
 written to the file.
 
-eg rows:
-[17, "realkey"]	{"some values": "other JSON"}
-[22, "other realkey"]	{"other values": "more JSON"}
+eg rows:  
+[17, "realkey"]	{"some values": "other JSON"}  
+[22, "other realkey"]	{"other values": "more JSON"}  
 
-in [outputdir]/17/part-00000 will be written "realkey"	{"some values": "other JSON"}
-in [outputdir]/22/part-00000 will be written "other realkey"	{"other values": "more JSON"}
+in [outputdir]/17/part-00000 will be written "realkey"	{"some values": "other JSON"}  
+in [outputdir]/22/part-00000 will be written "other realkey"	{"other values": "more JSON"}  
 
 ### oddjob.MultipleKeyOutputFormat - Writes to the files specified by the key, and only writes the value
 The key of your job output will be used as the file path.  Only the value will
 be written to the resulting files.
 
-eg rows:
-filename1	{"some values": "other JSON"}
-otherfile	{"other values": "more JSON"}
+eg rows:  
+filename1	{"some values": "other JSON"}  
+otherfile	{"other values": "more JSON"}  
 
-in [outputdir]/filename1/part-00000 will be written {"some values": "other JSON"}
-in [outputdir]/otherfile/part-00000 will be written {"other values": "more JSON"}
+in [outputdir]/filename1/part-00000 will be written {"some values": "other JSON"}  
+in [outputdir]/otherfile/part-00000 will be written {"other values": "more JSON"}  
 
 ## Hadoop Versions
 This version is compatible with Hadoop 0.20.  The git tag 'hadoop-0.18' contains
@@ -54,7 +54,7 @@ between versions, so please read both if you are switching between versions.
 
 ## Usage
 
-../lein uberjar
+../lein uberjar  
 python your_mrjob.py --hadoop-arg -libjars --hadoop-arg oddjob-*-standalone.jar --outputformat oddjob.MultipleJSONOutputFormat [other options]
 
 ## License
