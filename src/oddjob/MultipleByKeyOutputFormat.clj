@@ -9,7 +9,6 @@
   name.
 
   This function joins the partial-path with the leaf file (typically part-0000x).
-  Developer is responsible for ensuring the resulting path still passes 
-  FSNamesystem.isValidName."
+  Non-word characters are replaced with an underscore in the path."
   [this akey value leaf]
-  (str (Path. (str akey) leaf)))
+  (str (Path. (.replaceAll (.matcher #"[\W]" (str akey) ) "_") leaf)))
