@@ -54,8 +54,12 @@ between versions, so please read both if you are switching between versions.
 
 ## Usage
 
-../lein uberjar  
-python your_mrjob.py --hadoop-arg -libjars --hadoop-arg oddjob-*-standalone.jar --outputformat oddjob.MultipleJSONOutputFormat [other options]
+    ../lein uberjar
+    python examples/mr_wc.py --verbose -r emr  --hadoop-version 0.20  --bootstrap-file oddjob-*-standalone.jar  --bootstrap-cmd 'cp oddjob-*-standalone.jar /home/hadoop/' --hadoop-arg -libjars --hadoop-arg oddjob-*-standalone.jar input.txt
+
+This version of oddjob is designed to be used as a -libjar argument with hadoop 0.20.
+-libjar arguments must be available to the hadoop script when you run the job, so you can use an
+inline bootstrap-cmd as shown, set it up in your config, or have an AMI with it already installed.
 
 ## License
 
