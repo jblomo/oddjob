@@ -11,4 +11,4 @@
   This function joins the partial-path with the leaf file (typically part-0000x).
   Non-word characters are replaced with an underscore in the path."
   [this akey value leaf]
-  (str (Path. (.replaceAll (.matcher #"[\W]" (str akey) ) "_") leaf)))
+  (str (Path. (.replaceAll (str akey) "[:/]" "_") leaf)))
