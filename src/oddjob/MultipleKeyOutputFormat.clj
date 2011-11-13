@@ -1,5 +1,4 @@
 (ns oddjob.MultipleKeyOutputFormat
-  (:require [clojure.contrib.json :as json])
   (:import [org.apache.hadoop.fs Path]
            [java.util StringTokenizer])
   ; static class oddjob.MultipleKeyOutputFormat extends MultipleTextOutputFormat<Text, Text> {
