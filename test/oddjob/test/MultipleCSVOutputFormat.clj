@@ -1,13 +1,20 @@
 (ns oddjob.test.MultipleCSVOutputFormat
   (:use [clojure.test]
-        [clojure.string :only (join)])
-  (:require [clojure.contrib.json :as json])
+        [clojure.string :only (join)]
+        [clojure.data.csv :only (read-csv write-csv)]
+        [clojure.data.json :only (json-str)])
   (:import [org.apache.hadoop.io Text]))
 
 (defn- make-element
-  "Encodes a seqable as a CSV in a hadoop Text class"
+  "Encodes a seqable as a CSV in a hadoop Text class.  Write a customized string
+  to avoid dependencies on csv library."
   [aseq]
-  (Text. (join "," (map json/json-str aseq))))
+  (Text. (join "," (map json-str aseq))))
+
+(defn- text-to-vec
+  "Converts a hadoop.io.Text object to a parsed vector."
+  [text]
+  (first (read-csv (str text))))
 
 (def value (Text.))
 
@@ -27,10 +34,10 @@
          (doseq [akey test-rows]
            (let [path (.generateFileNameForKeyValue splitter (make-element akey) value leaf)
                  correct (str (first akey) "/" leaf)]
-             (is (= path correct)))))
+             (is (apply = (map text-to-vec [path correct]))))))
 
 (deftest gen-actual-key
          (doseq [akey test-rows]
            (let [output (.generateActualKey splitter (make-element akey) value)
                  correct (make-element (rest akey))]
-             (is (= output correct)))))
+             (is (apply = (map text-to-vec [output correct]))))))
