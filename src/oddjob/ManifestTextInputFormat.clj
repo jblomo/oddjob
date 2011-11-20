@@ -1,8 +1,8 @@
 (ns oddjob.ManifestTextInputFormat
   (:import [org.apache.hadoop.fs Path]
-           [org.apache.hadoop.mapreduce.lib.input TextInputFormat]
+           [org.apache.hadoop.mapred TextInputFormat]
            [java.io InputStreamReader BufferedReader])
-  (:gen-class :extends org.apache.hadoop.mapreduce.lib.input.TextInputFormat))
+  (:gen-class :extends org.apache.hadoop.mapred.TextInputFormat))
 
 (defn- manifest->paths
   "Given a manifest, return a list paths in it"
@@ -23,10 +23,9 @@
 (defn -listStatus
   "Takes the nominal job input path as a manifest file and returns all the paths
   within the file."
-  [this job-context]
-  (let [manifests (TextInputFormat/getInputPaths job-context)
-        conf (.getConfiguration job-context)
-        paths (mapcat #(manifest->paths % conf) manifests)
-        file-statuses (mapcat #(path->file-statuses % conf) paths)]
-    file-statuses))
+  [this job]
+  (let [manifests (TextInputFormat/getInputPaths job)
+        paths (mapcat #(manifest->paths % job) manifests)
+        file-statuses (mapcat #(path->file-statuses % job) paths)]
+    (into-array file-statuses)))
 
