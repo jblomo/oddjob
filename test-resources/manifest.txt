@@ -1,0 +1,2 @@
+test-resources/manifest/file-b.txt
+test-resources/manifest/file-a.txt
