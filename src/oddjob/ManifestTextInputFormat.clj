@@ -14,18 +14,27 @@
                       BufferedReader.
                       line-seq))))
 
-(defn- path->file-statuses
-  "Given a Path return the all matching FileStatuses"
+(defn- expand-path
+  "Expand a path to the contents if a directory, or matches if a glob, or just the given path."
+  [path conf]
+  (let [fs (.getFileSystem path conf)
+        matches (.globStatus fs path)]
+    (map #(.getPath %) (mapcat #(if (.isDir %)
+                                  (.listStatus fs (.getPath %))
+                                  [%]) matches))))
+
+(defn- path->status
+  "Given a Path return all the expanded matching FileStatuses."
   [path conf]
   (let [fs (.getFileSystem path conf)]
-    (.globStatus fs path)))
+    (mapcat #(.globStatus fs %) (expand-path path conf))))
 
 (defn -listStatus
   "Takes the nominal job input path as a manifest file and returns all the paths
   within the file."
   [this job]
-  (let [manifests (TextInputFormat/getInputPaths job)
+  (let [manifests (mapcat #(expand-path % job) (TextInputFormat/getInputPaths job))
         paths (mapcat #(manifest->paths % job) manifests)
-        file-statuses (mapcat #(path->file-statuses % job) paths)]
+        file-statuses (mapcat #(path->status % job) paths)]
     (into-array file-statuses)))
 
