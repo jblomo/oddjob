@@ -1,0 +1,3 @@
+test-resources/file-input/file-a.txt
+test-resources/path-input
+test-resources/nonexistent-input
