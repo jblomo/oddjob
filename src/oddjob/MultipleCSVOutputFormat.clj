@@ -1,7 +1,11 @@
 (ns oddjob.MultipleCSVOutputFormat
+  "Writes to the directories specified by the first element in a row.
+
+  The output key of your job must be a comma separated row, fields optionally
+  enclosed by double quotes.  The first element will be used as the
+  subdirectory, and the written row will not include that first element."
   (:use [clojure.data.csv :only (read-csv write-csv)])
-  (:import [org.apache.hadoop.fs Path]
-           [java.util StringTokenizer])
+  (:import [org.apache.hadoop.fs Path])
   ; static class oddjob.MultipleCSVOutputFormat extends MultipleTextOutputFormat<Text, Text> {
   (:gen-class :extends org.apache.hadoop.mapred.lib.MultipleTextOutputFormat))
 

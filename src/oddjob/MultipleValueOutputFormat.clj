@@ -1,6 +1,9 @@
 (ns oddjob.MultipleValueOutputFormat
-  (:import [org.apache.hadoop.fs Path]
-           [java.util StringTokenizer])
+  "Writes to the directories specified by the key, and only writes the value
+
+  The key of your job output will be used as the file path.  Only the value will
+  be written to the resulting files."
+  (:import [org.apache.hadoop.fs Path])
   ; static class oddjob.MultipleValueOutputFormat extends MultipleTextOutputFormat<Text, Text> {
   (:gen-class :extends org.apache.hadoop.mapred.lib.MultipleTextOutputFormat))
 

@@ -1,7 +1,7 @@
 (ns oddjob.ManifestTextInputFormat
   "Manifest files are inputs with a list of paths to use as the real input.
 
-  Paths may be directories, globs, or files and will be expanded approprietly.
+  Paths may be directories, globs, or files and will be expanded appropriately
   Unlike most InputFormats, this class will silently ignore missing and
   unmatched paths in the manifest file."
   (:import [org.apache.hadoop.fs Path]

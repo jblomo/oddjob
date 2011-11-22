@@ -1,4 +1,9 @@
 (ns oddjob.MultipleJSONOutputFormat
+  "Writes to the directories specified by the first element in the key.
+
+  The output key of your job must be a JSON formatted array.  The first element
+  will be used as the subdirectory, and the second element will be used for key
+  written to the file."
   (:use [clojure.data.json :only (json-str read-json)])
   (:import [org.apache.hadoop.fs Path])
   ; static class oddjob.MultipleJSONOutputFormat extends MultipleTextOutputFormat<Text, Text> {

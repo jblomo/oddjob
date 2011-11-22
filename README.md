@@ -33,8 +33,8 @@ otherfile	{"other values": "more JSON"}
 in [outputdir]/filename1/part-00000 will be written {"some values": "other JSON"}  
 in [outputdir]/otherfile/part-00000 will be written {"other values": "more JSON"}  
 
-### oddjob.MultipleCSVOutputFormat - Writes to the directories specified by the first element in a row.
-The output key of your job must be a comma seperated row, fields optionally
+### oddjob.MultipleCSVOutputFormat - Writes to the directories specified by the first element in a row
+The output key of your job must be a comma separated row, fields optionally
 enclosed by double quotes.  The first element will be used as the subdirectory,
 and the written row will not include that first element.
 
@@ -46,7 +46,7 @@ in [outputdir]/even/part-00000 will be written 16,4
 in [outputdir]/odd/part-00000 will be written 25,5  
 
 
-### oddjob.MultipleJSONOutputFormat - Writes to the directories specified by the first element in the key.
+### oddjob.MultipleJSONOutputFormat - Writes to the directories specified by the first element in the key
 The output key of your job must be a JSON formatted array.  The first element
 will be used as the subdirectory, and the second element will be used for key
 written to the file.
@@ -57,6 +57,11 @@ eg rows:
 
 in [outputdir]/17/part-00000 will be written "realkey"	{"some values": "other JSON"}  
 in [outputdir]/22/part-00000 will be written "other realkey"	{"other values": "more JSON"}  
+
+### oddjob.ManifestTextInputFormat - Manifest files are inputs with a list of paths to use as the real input.
+Paths may be directories, globs, or files and will be expanded appropriately.
+Unlike most InputFormats, this class will silently ignore missing and unmatched
+paths in the manifest file.
 
 ## Hadoop Versions
 This version is compatible with Hadoop 0.20.  The git tag 'hadoop-0.18' contains

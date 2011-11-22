@@ -1,6 +1,9 @@
 (ns oddjob.MultipleTextOutputFormatByKey
-  (:import [org.apache.hadoop.fs Path]
-           [java.util StringTokenizer])
+  "Writes to the directories specified by the key.
+
+  The key of your job output will be used as the file path.  Both the key and
+  the value will be written to the resulting tab delimited text files."
+ (:import [org.apache.hadoop.fs Path])
   ; static class oddjob.MultipleTextOutputFormatByKey extends MultipleTextOutputFormat<Text, Text> {
   (:gen-class :extends org.apache.hadoop.mapred.lib.MultipleTextOutputFormat))
 
