@@ -1,4 +1,4 @@
-(ns oddjob.test.MultipleKeyOutputFormat
+(ns oddjob.test.MultipleValueOutputFormat
   (:use [clojure.test]
         [clojure.string :only (join)])
   (:import [org.apache.hadoop.io Text]))
@@ -10,7 +10,7 @@
 
 (def leaf "part-00000")
 
-(def splitter (oddjob.MultipleKeyOutputFormat.))
+(def splitter (oddjob.MultipleValueOutputFormat.))
 
 (def test-keys [["myfilename","rest"]
                 ["myfilename",28342]

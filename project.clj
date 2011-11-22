@@ -1,4 +1,4 @@
-(defproject oddjob "0.38.0-SNAPSHOT"
+(defproject oddjob "0.48.0-SNAPSHOT"
             :description "Hadoop utilities for MrJob that must run in the JVM"
             :dependencies [[org.clojure/clojure "1.3.0"]
                            [org.clojure/data.json "0.1.2"]

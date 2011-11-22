@@ -1,7 +1,7 @@
-(ns oddjob.MultipleKeyOutputFormat
+(ns oddjob.MultipleValueOutputFormat
   (:import [org.apache.hadoop.fs Path]
            [java.util StringTokenizer])
-  ; static class oddjob.MultipleKeyOutputFormat extends MultipleTextOutputFormat<Text, Text> {
+  ; static class oddjob.MultipleValueOutputFormat extends MultipleTextOutputFormat<Text, Text> {
   (:gen-class :extends org.apache.hadoop.mapred.lib.MultipleTextOutputFormat))
 
 (defn -generateFileNameForKeyValue
