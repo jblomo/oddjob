@@ -5,10 +5,10 @@
   Unlike most InputFormats, this class will silently ignore missing and
   unmatched paths in the manifest file."
   (:import [org.apache.hadoop.fs Path]
-           [org.apache.hadoop.mapred TextInputFormat]
+           [org.apache.hadoop.mapred KeyValueTextInputFormat]
            [java.io InputStreamReader BufferedReader]
            [org.apache.commons.logging LogFactory])
-  (:gen-class :extends org.apache.hadoop.mapred.TextInputFormat
+  (:gen-class :extends org.apache.hadoop.mapred.KeyValueTextInputFormat
               :exposes-methods {listStatus superlistStatus}))
 
 (defn- manifest->paths
