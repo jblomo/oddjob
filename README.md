@@ -1,8 +1,8 @@
 # oddjob
 
 This project gathers useful JVM classes for the mrjob hadoop streaming
-framework.  Use the jar built in this class in place of the hadoop-streaming jar
-and use provided classes to change things like the input and output formats.
+framework.  Use the uberjar built by this project as an arguement to
+hadoop-streaming's -libjars option to use the classes below.
 
 See also:
 
@@ -45,7 +45,6 @@ eg rows:
 in [outputdir]/even/part-00000 will be written 16,4  
 in [outputdir]/odd/part-00000 will be written 25,5  
 
-
 ### oddjob.MultipleJSONOutputFormat - Writes to the directories specified by the first element in the key
 The output key of your job must be a JSON formatted array.  The first element
 will be used as the subdirectory, and the second element will be used for key
@@ -63,10 +62,8 @@ Paths may be directories, globs, or files and will be expanded appropriately.
 Unlike most InputFormats, this class will silently ignore missing and unmatched
 paths in the manifest file.
 
-## Hadoop Versions
-This version is compatible with Hadoop 0.20.  The git tag 'hadoop-0.18' contains
-a version of oddjob compatible with Hadoop 0.18.  The Usage sections differ
-between versions, so please read both if you are switching between versions.
+Manifest files are useful for getting around the limit imposed by Amazon EMR on
+length of the input paths.
 
 ## Usage
 
@@ -79,7 +76,7 @@ inline bootstrap-cmd as shown, set it up in your config, or have an AMI with it 
 
 ## License
 
-Copyright 2010 Yelp
+Copyright 2010-2012 Yelp
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
