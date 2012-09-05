@@ -17,7 +17,7 @@
   (typically part-0000x).  Developer is responsible for ensuring the resulting
   path still passes FSNamesystem.isValidName."
   [this akey value leaf]
-  (str (Path. (-> akey str read-json first str) leaf)))
+  (str (Path. (-> akey str read-json first str) (-> akey str read-json second str))))
 
 (defn -generateActualKey
   "Generate the actual key from the given key/value. akey is a Key row, the

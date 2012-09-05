@@ -57,16 +57,16 @@ eg rows:
 in [outputdir]/17/part-00000 will be written "realkey"	{"some values": "other JSON"}  
 in [outputdir]/22/part-00000 will be written "other realkey"	{"other values": "more JSON"}  
 
-### oddjob.MultipleValueJSONOutputFormat - Writes to the directories specified by the first element in the key, and only writes the value
+### oddjob.MultipleValueJSONOutputFormat - Writes to the directories specified by the first element in the key, the filename is the second element of the key, and only writes the value
 The output key of your job must be a JSON formatted array.  The first element
 will be used as the subdirectory, and the second element will not be written to the file.
 
 eg rows:  
 [17, "realkey"]	{"some values": "other JSON"}  
-[22, "other realkey"]	{"other values": "more JSON"}  
+[22, "otherrealkey"]	{"other values": "more JSON"}  
 
-in [outputdir]/17/part-00000 will be written {"some values": "other JSON"}  
-in [outputdir]/22/part-00000 will be written {"other values": "more JSON"}
+in [outputdir]/17/realkey will be written {"some values": "other JSON"}  
+in [outputdir]/22/otherrealkey will be written {"other values": "more JSON"}
 
 ### oddjob.ManifestTextInputFormat - Manifest files are inputs with a list of paths to use as the real input.
 Paths may be directories, globs, or files and will be expanded appropriately.
