@@ -1,13 +1,13 @@
 (ns oddjob.test.MultipleJSONOutputFormat
   (:use [clojure.test]
         [clojure.string :only (join)]
-        [clojure.data.json :only (json-str)])
+        [clojure.data.json :only (write-str)])
   (:import [org.apache.hadoop.io Text]))
 
 (defn- make-element
   "Encodes a clojure elements as a JSON string in a hadoop Text class"
   [elem]
-  (Text. (json-str elem)))
+  (Text. (write-str elem)))
 
 (def value (Text.))
 
