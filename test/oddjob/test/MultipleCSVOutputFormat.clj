@@ -2,14 +2,14 @@
   (:use [clojure.test]
         [clojure.string :only (join)]
         [clojure.data.csv :only (read-csv write-csv)]
-        [clojure.data.json :only (json-str)])
+        [clojure.data.json :only (write-str)])
   (:import [org.apache.hadoop.io Text]))
 
 (defn- make-element
   "Encodes a seqable as a CSV in a hadoop Text class.  Write a customized string
   to avoid dependencies on csv library."
   [aseq]
-  (Text. (join "," (map json-str aseq))))
+  (Text. (join "," (map write-str aseq))))
 
 (defn- text-to-vec
   "Converts a hadoop.io.Text object to a parsed vector."
