@@ -33,6 +33,20 @@ otherfile	{"other values": "more JSON"}
 in [outputdir]/filename1/part-00000 will be written {"some values": "other JSON"}  
 in [outputdir]/otherfile/part-00000 will be written {"other values": "more JSON"}  
 
+### oddjob.MultipleLeafValueOutputFormat - Writes to the *file* specified by the key, and only writes the value
+WARNING: advanced usage only. You probably want MultipleValueOutputFormat
+instead.  This class allows the developer to specify the entire path of the
+output file, including the "leaf" file (usually 'part-00XXX'). This means the
+job /must/ output unique keys per process.  For example, you may use this format
+if you guaruntee each key is unique per reducer.
+
+eg rows:  
+full/filename	{"some values": "other JSON"}  
+otherpath/filename	{"other values": "more JSON"}  
+
+in [outputdir]/full/filename will be written {"some values": "other JSON"}  
+in [outputdir]/otherpath/filename will be written {"other values": "more JSON"}  
+
 ### oddjob.MultipleCSVOutputFormat - Writes to the directories specified by the first element in a row
 The output key of your job must be a comma separated row, fields optionally
 enclosed by double quotes.  The first element will be used as the subdirectory,
