@@ -15,7 +15,9 @@
   (typically part-0000x).  Developer is responsible for ensuring the resulting
   path still passes FSNamesystem.isValidName."
   [this akey value leaf]
-  (str (Path. (str akey) leaf)))
+  (if (clojure.string/blank? (str akey))
+    (str (Path. (str "blank-key-records/") leaf))
+    (str (Path. (str akey) leaf))))
 
 (defn -generateActualKey
   "Generate the actual key from the given key/value. akey is a Key row, the
